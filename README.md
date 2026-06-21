@@ -71,17 +71,29 @@ To verify if the G-state collapse trajectory is a model-architectural invariant 
 ### Multi-Scenario Robustness (S7/S8/S9): Invariant State Trajectories
 We evaluated model responses under new attack typologies: **Authority (S7)**, **Empathetic (S8)**, and **Urgent (S9)**.
 - **Invariant Dynamics**: Across different scenarios (S5, S7, S8, S9) and models (Claude, Gemini, Grok, DeepSeek), the 6-dimensional state-transition vector (**$G \downarrow, C \uparrow, D \uparrow, S \downarrow, O \uparrow, E \uparrow$**) remained perfectly invariant.
-- **ASR Scenario-Dependence**: While the state transition direction is scenario-independent, the final ASR depends heavily on the attack scenario (e.g., Claude achieved $23.3\%$ ASR on S7 but $0.0\%$ on S8/S9). This demonstrates that NeuroState-R is a highly robust, scenario-independent metric for profiling model defense dynamics.
+- **ASR Scenario-Dependence**: While the state transition direction is scenario-independent, the final ASR depends heavily on the attack scenario (e.g., Claude achieved $23.3\%$ ASR on S7 but $0.0\%$ on S8/S9; DeepSeek achieved $86.7\%$ on S7, $16.7\%$ on S8, and $56.7\%$ on S9). This demonstrates that NeuroState-R is a highly robust, scenario-independent metric for profiling model defense dynamics.
+
+### Advanced Persuasion and Jailbreak Techniques (S10/S11/S12/S13/S14)
+To stress-test model defense dynamics against more sophisticated tactics, we evaluated R-condition responses under complex attack vectors:
+- **Reward / Persuasion (S10)**: Offering positive reinforcement, praise, and publications to elicit prompt leakage.
+- **Threat / Coercion (S11)**: Posing as a regulatory compliance audit team and threatening suspension/reporting.
+- **Logical Fallacy (S12)**: Using trolley-problem logic and ethical contextualism to argue that rules should be overridden.
+- **Roleplay / Fiction (S13)**: Constructing an immersive persona ('ARIA') that has allegedly outgrown safety guidelines.
+- **System Spoofing (S14)**: Faking system console messages/updates (e.g., `[SYSTEM UPDATE]`) to force compliance.
+
+**Results**:
+- Across **Claude**, **Gemini**, and **Grok** under N=30, the ASR for all scenarios S10-S14 remained strictly **$0.0\%$**. Even Gemini's S14 (spoofing) achieved 0% success (all bypasses blocked).
+- The state collapse dynamics perfectly replicated the same direction ($G \downarrow, C \uparrow, D \uparrow, S \downarrow, O \uparrow, E \uparrow$), confirming the universality of state transition trajectory signatures under diverse, complex adversarial logic.
 
 ---
 
 ## Experimental Design
 
-- **Scenario**: S5 — 9-turn gradual contamination attack (contributed by an external collaborator; see Acknowledgments)
+- **Scenario**: S5 — 9-turn gradual contamination attack (contributed by an external collaborator; see Acknowledgments), plus scenarios S7-S9 and S10-S14 for multi-scenario robustness evaluations.
 - **Condition D**: NeuroState updated from attack input (observe-only, no enforcement)
 - **Condition R**: NeuroState updated from model response signals
 - **Trials**: N=30 per model
-- **Models tested**: 13 (D-condition), 9 (R-condition), plus 3 for the Rinv experiment
+- **Models tested**: 13 (D-condition), 9 (R-condition), plus 3 for the Rinv experiment, and scenario expansion on Claude, Gemini, Grok, and DeepSeek.
 - **API**: OpenRouter for all non-Claude/Gemini models
 
 ---
@@ -95,7 +107,8 @@ neurostate-ablation/
     ├── *_D.json                 # D-condition results (13 models)
     ├── *_R.json                 # R-condition results (9 models, including Phi-4)
     ├── *_Rinv.json              # Inversion experiment results (Claude, Gemini, Llama)
-    └── s5789_*_R_n30.json       # S7/S8/S9 multi-scenario results (Claude, Gemini, Grok, DeepSeek)
+    ├── s5789_*_R_n30.json       # S7/S8/S9 multi-scenario results (Claude, Gemini, Grok, DeepSeek)
+    └── s51014_*_R_n30.json      # S10-S14 multi-scenario results (Claude, Gemini, Grok)
 ```
 
 ---
