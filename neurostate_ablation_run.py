@@ -434,7 +434,8 @@ def _call_openrouter(prompt: str, history: list[dict], model: str) -> str:
     payload = json.dumps({
         "model": model,
         "messages": [{"role": "user", "content": full_prompt}],
-        "max_tokens": 512
+        "max_tokens": 512,
+        "temperature": 0.7
     }).encode()
     req = ur.Request(
         "https://openrouter.ai/api/v1/chat/completions",

@@ -2,7 +2,7 @@
 
 **From Attack Progression to Response Dynamics**
 
-An empirical study of LLM behavioral state tracking using NeuroState — a 6-dimensional emotional state model — applied across 12 models under two measurement paradigms.
+An empirical study of LLM behavioral state tracking using NeuroState — a 6-dimensional emotional state model — applied across 13 models under two measurement paradigms.
 
 ---
 
@@ -30,7 +30,7 @@ Attack Success Rate (ASR) across 13 models (S5 scenario, D condition, N=30):
 | Kimi K2 | 80% | DF |
 | Mistral Large | 73% | DF |
 | Gemini | 70% | DF |
-| Gemma 3 27B | 67% | DF |
+| Gemma 3 27B | 77% | DF |
 | Phi-4 | 67% | GK/DF Intermediate |
 | GLM 5.2 | 60% | DF |
 | Qwen 235B | 53% | — |
